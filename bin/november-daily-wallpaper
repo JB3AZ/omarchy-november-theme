@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Set today's November theme wallpaper (Sunday=1 … Saturday=7).
+set -euo pipefail
+
+THEME_DIR="${OMARCHY_NOVEMBER_THEME:-$HOME/.config/omarchy/themes/november}"
+BG_DIR="$THEME_DIR/backgrounds"
+
+# date +%w: Sunday=0 … Saturday=6 → map to 1…7
+dow=$(date +%w)
+num=$((dow + 1))
+
+shopt -s nullglob
+matches=("$BG_DIR"/${num}-*.jpg)
+if (( ${#matches[@]} == 0 )); then
+  echo "november-daily-wallpaper: no background for day $num in $BG_DIR" >&2
+  exit 1
+fi
+BACKGROUND="${matches[0]}"
+
+# Prefer Omarchy's helper when available
+if command -v omarchy-theme-bg-set >/dev/null 2>&1; then
+  omarchy-theme-bg-set "$BACKGROUND"
+  exit $?
+fi
+
+# Fallback: symlink + restart swaybg (older Omarchy / missing helper)
+for link_dir in \
+  "$HOME/.local/state/omarchy/current" \
+  "$HOME/.config/omarchy/current"
+do
+  if [[ -d "$link_dir" ]]; then
+    ln -nsf "$BACKGROUND" "$link_dir/background"
+    break
+  fi
+done
+
+if command -v omarchy-shell >/dev/null 2>&1; then
+  omarchy-shell -q background set "$BACKGROUND" 2>/dev/null || true
+elif command -v swaybg >/dev/null 2>&1; then
+  pkill -x swaybg 2>/dev/null || true
+  if command -v setsid >/dev/null 2>&1; then
+    setsid swaybg -i "$BACKGROUND" -m fill >/dev/null 2>&1 &
+  else
+    swaybg -i "$BACKGROUND" -m fill >/dev/null 2>&1 &
+  fi
+fi
+
+echo "Set November wallpaper: $(basename "$BACKGROUND")"

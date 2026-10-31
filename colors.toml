@@ -1,0 +1,57 @@
+mode = "dark"
+
+# Cozy November: espresso, cream, pumpkin, cranberry, gold
+accent = "#E07A2E"
+selection = "#3A2A22"
+muted = "#6B5344"
+
+background = "#1E1612"
+dark_background = "#15100D"
+darker_background = "#0F0B09"
+lighter_background = "#2A211C"
+
+foreground = "#EADBC8"
+dark_foreground = "#8A7360"
+light_foreground = "#F0E4D4"
+bright_foreground = "#F7F0E6"
+
+red = "#A3243B"
+yellow = "#D9A441"
+orange = "#E07A2E"
+green = "#6B8F4E"
+cyan = "#7A9E8E"
+blue = "#5B7A8C"
+magenta = "#A35A6A"
+brown = "#8B5A3C"
+
+bright_red = "#C94A5A"
+bright_yellow = "#E8C06A"
+bright_green = "#8BB06A"
+bright_cyan = "#9AB8A8"
+bright_blue = "#7A9AAC"
+bright_magenta = "#C07A8A"
+
+# Cursor / selection (legacy-friendly)
+cursor = "#F7F0E6"
+selection_background = "#3A2A22"
+selection_foreground = "#F7F0E6"
+
+# ANSI 0-7 (normal)
+color0  = "#1E1612"
+color1  = "#A3243B"
+color2  = "#6B8F4E"
+color3  = "#D9A441"
+color4  = "#5B7A8C"
+color5  = "#A35A6A"
+color6  = "#7A9E8E"
+color7  = "#EADBC8"
+
+# ANSI 8-15 (bright)
+color8  = "#6B5344"
+color9  = "#C94A5A"
+color10 = "#8BB06A"
+color11 = "#E8C06A"
+color12 = "#7A9AAC"
+color13 = "#C07A8A"
+color14 = "#9AB8A8"
+color15 = "#F7F0E6"

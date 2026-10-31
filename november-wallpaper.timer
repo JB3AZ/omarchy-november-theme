@@ -1,0 +1,11 @@
+[Unit]
+Description=November theme — daily wallpaper at midnight and on login
+
+[Timer]
+OnCalendar=*-*-* 00:01
+Persistent=true
+OnStartupSec=30
+Unit=november-wallpaper.service
+
+[Install]
+WantedBy=timers.target
